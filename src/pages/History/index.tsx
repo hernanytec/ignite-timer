@@ -17,7 +17,7 @@ interface Task {
 
 export function History() {
   const { cycles } = useContext(CyclesContext)
-  console.log(cycles)
+
   const tasks = [
     {
       name: 'tarefa 1',
@@ -57,13 +57,21 @@ export function History() {
             </tr>
           </thead>
           <tbody>
-            {tasks.map((task) => (
-              <tr key={task.name}>
-                <td>{task.name}</td>
-                <td>{task.duration}</td>
-                <td>{task.date}</td>
+            {cycles.map((cycle) => (
+              <tr key={cycle.id}>
+                <td>{cycle.task}</td>
+                <td>{cycle.minutesAmount} minutos</td>
+                <td>{cycle.startDate.toISOString()}</td>
                 <td>
-                  <Status color={task.statusColor}>{task.status}</Status>
+                  {cycle.finishedDate && (
+                    <Status color="green">Concluído</Status>
+                  )}
+                  {cycle.interruptedDate && (
+                    <Status color="red">Interrompido</Status>
+                  )}
+                  {!cycle.finishedDate && !cycle.interruptedDate && (
+                    <Status color="yellow">Em andamento</Status>
+                  )}
                 </td>
               </tr>
             ))}
