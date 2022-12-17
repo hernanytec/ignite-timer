@@ -1,3 +1,5 @@
+import { useContext } from 'react'
+import { CyclesContext } from '../../contexts/CycleContext'
 import {
   AvailableStatusColors,
   HistoryContainer,
@@ -14,6 +16,8 @@ interface Task {
 }
 
 export function History() {
+  const { cycles } = useContext(CyclesContext)
+  console.log(cycles)
   const tasks = [
     {
       name: 'tarefa 1',
