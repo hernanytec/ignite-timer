@@ -46,6 +46,8 @@ export function cyclesReducers(state: CyclesState, action: any) {
         draft.cycles[currentCycleIndex].finishedDate = new Date()
       })
     }
+    case ActionTypes.CLEAR_CYLES_LIST:
+      return { ...state, cycles: [], activeCycleId: null }
     default:
       return state
   }

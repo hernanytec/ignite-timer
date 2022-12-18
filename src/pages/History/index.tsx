@@ -1,15 +1,21 @@
 import { formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
+import { Trash } from 'phosphor-react'
 import { useContext } from 'react'
 import { CyclesContext } from '../../contexts/CycleContext'
-import { HistoryContainer, HistoryList, Status } from './styles'
+import { HistoryContainer, HistoryHeader, HistoryList, Status } from './styles'
 
 export function History() {
-  const { cycles } = useContext(CyclesContext)
+  const { cycles, clearCyclesList } = useContext(CyclesContext)
 
   return (
     <HistoryContainer>
-      <h1>Meu histórico</h1>
+      <HistoryHeader>
+        <h1>Meu histórico</h1>
+        <span title="Limpar histórico">
+          <Trash className="trash-icon" size={24} onClick={clearCyclesList} />
+        </span>
+      </HistoryHeader>
 
       <HistoryList>
         <table>

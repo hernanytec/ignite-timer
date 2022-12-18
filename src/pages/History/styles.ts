@@ -12,6 +12,16 @@ export const HistoryContainer = styled.main`
   }
 `
 
+export const HistoryHeader = styled.header`
+  display: flex;
+  justify-content: space-between;
+
+  .trash-icon:hover {
+    cursor: pointer;
+    color: ${(props) => props.theme['red-500']};
+  }
+`
+
 export const HistoryList = styled.div`
   flex: 1;
   overflow: auto;
