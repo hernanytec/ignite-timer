@@ -40,22 +40,20 @@ interface CyclesContextProviderProps {
 export function CyclesContextProvider({
   children,
 }: CyclesContextProviderProps) {
-  const [cyclesState, dispatch] = useReducer(
-    cyclesReducers,
-    {
-      cycles: [],
-      activeCycleId: null,
-    },
-    () => {
-      const storedStateAsJSON = localStorage.getItem(
-        '@iginite-timer:cyclesState-1.0.0',
-      )
+  const [cyclesState, dispatch] = useReducer(cyclesReducers, null, () => {
+    const storedStateAsJSON = localStorage.getItem(
+      '@iginite-timer:cyclesState-1.0.0',
+    )
 
-      if (storedStateAsJSON) {
-        return JSON.parse(storedStateAsJSON)
+    if (storedStateAsJSON) {
+      return JSON.parse(storedStateAsJSON)
+    } else {
+      return {
+        cycles: [],
+        activeCycleId: null,
       }
-    },
-  )
+    }
+  })
 
   const { cycles, activeCycleId } = cyclesState
   const activeCycle = cycles.find((cycle: Cycle) => cycle.id === activeCycleId)
